@@ -1,0 +1,58 @@
+<H3 align="center"><label>X:</label>
+    <input 
+          type="text" 
+          [(ngModel)]="jugadorX" 
+          id="X" 
+    />    <br>
+          <label>O:</label> 
+    <input 
+          type="text" 
+          [(ngModel)]="jugadorO"
+          id="O"
+    />
+    <br>
+    <input
+          type="button" 
+          value="Iniciar" 
+          (click)="iniciarJuego()"
+          enable="Iniciar"
+          >
+          
+    <input
+            type="button"
+            value="Nuevo juego" 
+            (click)="nuevoJuego()"
+      />
+    <br /><br />
+    <table id="tabla">
+      <tr *ngFor="let item of tablero; index as fila">
+        <td *ngFor="let item1 of tablero; index as columna"
+        >
+          <input
+          disabled="tablero"
+            [disabled]="tablero[fila][columna] != null"
+            type="button"
+            value="{{tablero[fila][columna]}}"
+            (click)="marcarPosicion(fila, columna)"
+            [ngClass]="tablero[fila][columna] == 'X' ? 'color1' : 'color2'"
+            [ngClass]="tablero[fila][columna] == 'X' ? 'color1' : 'color2'"
+            
+          />
+        </td>
+      </tr>
+    </table>
+</H3>
+    <table border="$1" >
+      <tr >
+        <th BGcolor="DARKGRAY"><pre> # Juego </pre></th>
+        <th BGcolor="DARKGRAY"><pre> Jugador X </pre></th>
+        <th BGcolor="DARKGRAY"> <pre> Jugador O </pre></th>
+        <th BGcolor="DARKGRAY"><pre> Ganador </pre></th>
+      </tr>
+      <tr *ngFor="let item of juegos; index as id">
+            <H3> <td><pre>  {{id + 1}}</pre></td></H3>
+            <td><pre>  {{item[0]}}</pre></td>
+            <td><pre>  {{item[1]}}</pre></td>
+            <td [ngClass]="item[2] == 'Empate' ? 'color' : ''"> <pre>   {{item[2]}}  </pre> </td>
+      </tr>
+    </table>
